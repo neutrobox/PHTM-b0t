@@ -15,7 +15,7 @@ class PHTMb0t(commands.Bot):
     def __init__(self):
         super().__init__(command_prefix=settings.config.PREFIX, case_insensitive=True)
         
-        self.status_format = 'Current User: {}'
+        self.status_format = 'Usuario: {}'
         self.emoji_list = []
         self.clear_list = []
         with open('cogs/data/user.json', 'r') as user_file:
@@ -34,15 +34,15 @@ class PHTMb0t(commands.Bot):
                 print('Failed to load extension {}\n{}'.format(ext, exc))
 
     async def on_ready(self):
-        print('Logged in...')
-        print('Username: ' + str(self.user.name))
-        print('Client ID: ' + str(self.user.id))
+        print('Logueado...')
+        print('Usuario: ' + str(self.user.name))
+        print('ID de cliente: ' + str(self.user.id))
         invite = 'https://discordapp.com/api/oauth2/authorize?client_id={}&permissions=27648&scope=bot'.format(str(self.user.id))
-        print('Invite URL: ' + invite)
+        print('URL del BOT: ' + invite)
         
         await self.update_status(self.owner_name)
         for emoji in self.emojis:
-            if emoji.guild.id == 457052141920583680:
+            if emoji.guild.id == 420441255550648322:
                 self.emoji_list.append(emoji)
         
         print('------------------------------')
@@ -66,9 +66,9 @@ class PHTMb0t(commands.Bot):
             return
         elif isinstance(error, commands.MissingRequiredArgument):
             if ctx.command.qualified_name == 'login':
-                await ctx.send('One or more required parameters are missing. Please execute the command as follows:\n`{}login [username] [password]`'.format(settings.config.PREFIX))
+                await ctx.send('Faltan uno o mas parametros requeridos. Ejecuta el comando de la siguiente manera:\n`{}login [nombre de usuario] [contrasena]`'.format(settings.config.PREFIX))
             elif ctx.command.qualified_name == 'upload':
-                await ctx.send('One or more required parameters are missing. Please execute the command as follows:\n`{}upload [raids/fractals] [title]`'.format(settings.config.PREFIX))
+                await ctx.send('Faltan uno o mas parametros requeridos. Ejecuta el comando de la siguiente manera:\n`{}upload [raids/fractals] [titulo]`'.format(settings.config.PREFIX))
             else:
                 await ctx.send('ERROR :robot:')
                 

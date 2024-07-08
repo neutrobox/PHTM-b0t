@@ -37,7 +37,7 @@ class Arcdps(commands.Cog):
         if has_perms:
             await ctx.message.delete()
         else:
-            await ctx.send('I do not have permissions to delete messages. Please enable this in the future.')
+            await ctx.send('No tengo permisos para borrar mensajes. Habilita esto en el futuro.')
 
         with open('cogs/data/user.json', 'r') as key_file:
             key = json.load(key_file)
@@ -60,20 +60,20 @@ class Arcdps(commands.Cog):
         
         confirmed = False
         while len(self.bot.owner_filepath) == 0 or not confirmed:
-            out = 'Please use the file explorer to select your arcdps.cbtlogs folder.'
+            out = 'Utiliza el explorador de archivos para seleccionar tu carpeta de logs.'
             try:
                 target = await ctx.author.send(out)
             except discord.Forbidden:
                 target = await ctx.send(out)
             root = Tk()
             root.withdraw()
-            key['filepath'] = filedialog.askdirectory(initialdir = "/", title = "Select your arcdps.cbtlogs folder")
+            key['filepath'] = filedialog.askdirectory(initialdir = "/", title = "Selecciona tu carpeta de logs")
             self.bot.owner_filepath = key['filepath']
 
             try:
-                message = await ctx.author.send('Your selected filepath is:\n```{}\nClick ✅ to confirm, ❌ to reselect```'.format(self.bot.owner_filepath))
+                message = await ctx.author.send('Tu carpeta de logs seleccionada es:\n```{}\nClick ✅ para confirmar, ❌ para reintentar```'.format(self.bot.owner_filepath))
             except discord.Forbidden:
-                message = await ctx.send('Your selected log order is:\n```{}\nClick ✅ to confirm, ❌ to reselect```'.format(self.bot.owner_filepath))
+                message = await ctx.send('Tu orden de log seleccionado es:\n```{}\nClick ✅ para confirmar, ❌ para reintentar```'.format(self.bot.owner_filepath))
             await message.add_reaction('✅')
             await message.add_reaction('❌')
         
@@ -88,7 +88,7 @@ class Arcdps(commands.Cog):
         
         with open('cogs/data/user.json', 'w') as key_file:
             json.dump(key, key_file, indent=4)
-        target = await ctx.send('Login successful ✅ : Ready to upload logs.')
+        target = await ctx.send('Logueado')
         self.bot.clear_list.append(target)
         
     @commands.command()
@@ -101,18 +101,18 @@ class Arcdps(commands.Cog):
         if has_perms:
             await ctx.message.delete()
         else:
-            await ctx.send('I do not have permissions to delete messages. Please enable this in the future.')
+            await ctx.send('No tengo permisos para borrar mensajes. Habilita esto en el futuro.')
         
         if self.bot.owner_id == 0 or not self.bot.owner_id == ctx.author.id:
-            target = await ctx.send('You do not have permission to use the bot currently. Only the current user may use the bot.')
+            target = await ctx.send('Actualmente no tienes permiso para usar el bot. Solo el usuario actual puede usar el bot.')
             self.bot.clear_list.append(target)
             return
         if len(self.bot.owner_filepath) == 0:
-            target = await ctx.send('No file path found. Please log in and select your arcdps.cbtlogs folder.')
+            target = await ctx.send('No se encontro ninguna carpeta de logs. Inicia sesion y selecciona tu carpeta arcdps.cbtlogs.')
             self.bot.clear_list.append(target)
             return
         if not type == 'raids' and not type == 'fractals':
-            target = await ctx.send('Please indicate whether you want to upload `raids` or `fractals` logs.')
+            target = await ctx.send('Indica si deseas subir logs de "raids" o "fractales".')
             self.bot.clear_list.append(target)
             return 
         
@@ -125,18 +125,18 @@ class Arcdps(commands.Cog):
                 i += 1
             elif argv[i] == '--num':
                 if i == len(argv)-1:
-                    target = await ctx.send('Please enter the number of logs for the `--num` flag.')
+                    target = await ctx.send('Ingresa el numero de logs para el parametro `--num`')
                     self.bot.clear_list.append(target)
                     return
                 try:
                     self.num_logs = int(argv[i+1])
                     if self.num_logs <= 0:
-                        target = await ctx.send('Invalid number of logs for the `--num` flag.')
+                        target = await ctx.send('Numero invalido de logs para el parametro `--num`.')
                         self.bot.clear_list.append(target)
                         return
                     i += 2
                 except ValueError:
-                    target = await ctx.send('Invalid number of logs for the `--num` flag.')
+                    target = await ctx.send('Numero invalido de logs para el parametro `--num`.')
                     self.bot.clear_list.append(target)
                     return
             else:
@@ -315,12 +315,12 @@ class Arcdps(commands.Cog):
 
         while True:
             logs_len = len(self.logs_order)
-            out = 'Type the `number` of the wing/scale that you wish to upload'
+            out = 'Ingresa el `numero` de la Wing/Escala que deseas subir'
             if logs_len == 0:
-                out += ' or `0` to upload all of the bosses in all of the wings/scales.\n'
+                out += ' o `0` para subir todos los bosses de todas las Wings/Escalas.\n'
             else:
                 out += '.\n'
-            out += 'Type `x` to confirm your selection.\n```md\n'
+            out += 'Escribe `x` para confirmar tu seleccion.\n```md\n'
             if len(temp_logs[type]) == 0:
                 break
 
@@ -329,8 +329,8 @@ class Arcdps(commands.Cog):
                 out += '{0}. {1}\n'.format(count, e)
                 event.append(e)
             if logs_len == 0:
-                out += '\n0. [Upload All Bosses]'
-            out += '\n[x]: [Confirm Wing/Scale Order]\n```'
+                out += '\n0. [Subir todos los bosses]'
+            out += '\n[x]: [Confirmar orden de Wing/Fractal]\n```'
             message = await ctx.author.send(out)
                 
             ans = await self.bot.wait_for('message', check=m_check)
@@ -352,12 +352,12 @@ class Arcdps(commands.Cog):
             
             while True:
                 event_len = len(self.logs_order[event[e_pos]])
-                out = 'Type the `number` of the boss that you wish to upload'
+                out = 'Ingresa el `number` del boss que deseas subir'
                 if event_len == 0:
-                    out += ' or `0` to upload all of the bosses.\n'
+                    out += ' o `0` para subir todos los bosses.\n'
                 else:
                     out += '.\n'
-                out += 'Type `x` to confirm your selection.\n```md\n'
+                out += 'Escribe `x` para confirmar tu seleccion.\n```md\n'
                 if len(temp_logs[type][event[e_pos]]) == 0:
                     break
 
@@ -366,8 +366,8 @@ class Arcdps(commands.Cog):
                     out += '{0}. {1}\n'.format(count, b)
                     boss.append(b)
                 if event_len == 0:
-                    out += '\n0. [Upload All Bosses]'
-                out += '\n[x]: [Confirm Boss Order]\n```'
+                    out += '\n0. [Subir todos los bosses]'
+                out += '\n[x]: [Confirmar orden de los bosses]\n```'
                 message = await ctx.author.send(out)
                 
                 ans = await self.bot.wait_for('message', check=m_check)
@@ -391,11 +391,11 @@ class Arcdps(commands.Cog):
             del temp_logs[type][event[e_pos]]
         del temp_logs
 
-        print_order = 'Uploading to {}...\n'.format(mode)
+        print_order = 'Subiendo a {}...\n'.format(mode)
         for e in self.logs_order:
             if not len(self.logs_order[e]) == 0:
                 print_order += '{0}: {1}\n'.format(e, self.logs_order[e])
-        message = await ctx.author.send('Your selected log order is:\n```{}\nClick ✅ to confirm, ❌ to cancel```'.format(print_order))
+        message = await ctx.author.send('Tu orden de logs seleccionado es:\n```{}\nClick ✅ para confirmar, ❌ para cancelar```'.format(print_order))
         await message.add_reaction('✅')
         await message.add_reaction('❌')
         
@@ -462,8 +462,8 @@ class Arcdps(commands.Cog):
         else:
             title = '__{}__'.format(str(datetime.date.today()))
         embed = discord.Embed(title=title, colour=0xb30000)
-        embed.set_footer(text='Created by Phantom#4985 | PhantomSoulz.2419')
-        embed.set_thumbnail(url='https://vignette.wikia.nocookie.net/gwwikia/images/4/4d/Guild_Wars_2_Dragon_logo.jpg/revision/latest?cb=20090825055046')
+        embed.set_footer(text='Creado por Phantom#4985 | PhantomSoulz.2419. Mantenido por LeShock')
+        embed.set_thumbnail(url='https://wiki.guildwars2.com/images/b/b5/Mystic_Coin.png')
         for e in self.logs[type]:
             out = ''
             name = '{}:'.format(e)

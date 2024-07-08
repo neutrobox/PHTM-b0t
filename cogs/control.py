@@ -25,10 +25,10 @@ class Control(commands.Cog):
                     continue
             self.bot.clear_list.clear()
         else:
-            await ctx.send('I do not have permissions to delete messages. Please enable this in the future.')
+            await ctx.send('No tengo permisos para borrar mensajes. Habilita esto en el futuro.')
             
         if self.bot.owner_id == 0 or not self.bot.owner_id == ctx.author.id:
-            return await ctx.send('You do not have permission to use the bot currently. Only the current user may use the bot.')    
+            return await ctx.send('Actualmente no tienes permiso para usar el bot. Solo el usuario actual puede usar el bot.')    
             
         await self.bot.logout()
         await self.bot.close()

@@ -3,7 +3,7 @@
         "W1": {
             "Vale Guardian": {
                 "name": [
-                    "Vale Guardian",
+                    "Vale Guardian (15438)",
                     "Tal-W\u00e4chter",
                     "Gardien de la Vall\u00e9e",
                     "Guardi\u00e1n del valle"
@@ -96,19 +96,6 @@
                     "success": false
                 }
             },
-            "Twisted Castle": {
-                "name": [
-                    "Haunting Statue",
-                    "Spukende Statue",
-                    "Statue envo\u00fbtante",
-                    "Estatua inquietante"
-                ],
-                "dps.report": "about:blank",
-                "GW2Raidar": {
-                    "link": "about:blank",
-                    "success": false
-                }
-            },
             "Xera": {
                 "name": [
                     "Xera",
@@ -184,49 +171,6 @@
                     "Seelenloser Schrecken",
                     "Horreur sans \u00e2me",
                     "Horror sin alma"
-                ],
-                "dps.report": "about:blank",
-                "GW2Raidar": {
-                    "link": "about:blank",
-                    "success": false
-                }
-            },
-            "Broken King": {
-                "name": [
-                    "Broken King",
-                    "Bezwungener K\u00f6nig",
-                    "Roi bris\u00e9",
-                    "Rey Roto"
-                ],
-                "dps.report": "about:blank",
-                "GW2Raidar": {
-                    "link": "about:blank",
-                    "success": false
-                }
-            },
-            "Eater of Souls": {
-                "name": [
-                    "Eater of Souls",
-                    "Seelenverzehrer",
-                    "Mangeur d\u00e2mes",
-                    "Devorador de almas"
-                ],
-                "dps.report": "about:blank",
-                "GW2Raidar": {
-                    "link": "about:blank",
-                    "success": false
-                }
-            },
-            "Statue of Darkness": {
-                "name": [
-                    "Eye of Judgment",
-                    "Eye of Fate",
-                    "Auge des Urteils",
-                    "Auge des Schicksals",
-                    "\u0152il de jugement",
-                    "\u0152il du destin",
-                    "Ojo del Juicio",
-                    "Ojo del Destino"
                 ],
                 "dps.report": "about:blank",
                 "GW2Raidar": {
