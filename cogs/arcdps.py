@@ -261,7 +261,7 @@ class Arcdps(commands.Cog):
                                         target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}. `Error Code: GRENTH`')
                                         self.bot.clear_list.append(target)
                             except ValueError:
-                                target = await ctx.send(f'ERROR :robot: : JSON INVALIDO {b}. `CÓDIGO DE ERROR: JSON`')
+                                target = await ctx.send(f'ERROR :robot: : JSON INVALIDO {b}. `CODIGO DE ERROR: JSON`')
                                 self.bot.clear_list.append(target)
                     print(f'Uploaded {b}: dps.report')
 
