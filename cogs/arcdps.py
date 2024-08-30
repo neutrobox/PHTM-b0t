@@ -98,20 +98,24 @@ class Arcdps(commands.Cog):
             has_perms = False
         else:
             has_perms = ctx.channel.permissions_for(guild.me).manage_messages
+        
         if has_perms:
             await ctx.message.delete()
         else:
             await ctx.send('No tengo permisos para borrar mensajes. Habilita esto en el futuro.')
+            return
         
         if self.bot.owner_id == 0 or not self.bot.owner_id == ctx.author.id:
             target = await ctx.send('Actualmente no tienes permiso para usar el bot. Solo el usuario actual puede usar el bot.')
             self.bot.clear_list.append(target)
             return
+        
         if len(self.bot.owner_filepath) == 0:
-            target = await ctx.send('No se encontro ninguna carpeta de logs. Inicia sesion y selecciona tu carpeta arcdps.cbtlogs.')
+            target = await ctx.send('No se encontró ninguna carpeta de logs. Inicia sesión y selecciona tu carpeta arcdps.cbtlogs.')
             self.bot.clear_list.append(target)
             return
-        if not type == 'raids' and not type == 'fractals':
+        
+        if not type in ['raids', 'fractals']:
             target = await ctx.send('Indica si deseas subir logs de "raids" o "fractales".')
             self.bot.clear_list.append(target)
             return 
@@ -125,23 +129,24 @@ class Arcdps(commands.Cog):
                 i += 1
             elif argv[i] == '--num':
                 if i == len(argv)-1:
-                    target = await ctx.send('Ingresa el numero de logs para el parametro `--num`')
+                    target = await ctx.send('Ingresa el número de logs para el parámetro `--num`')
                     self.bot.clear_list.append(target)
                     return
                 try:
                     self.num_logs = int(argv[i+1])
                     if self.num_logs <= 0:
-                        target = await ctx.send('Numero invalido de logs para el parametro `--num`.')
+                        target = await ctx.send('Número inválido de logs para el parámetro `--num`.')
                         self.bot.clear_list.append(target)
                         return
                     i += 2
                 except ValueError:
-                    target = await ctx.send('Numero invalido de logs para el parametro `--num`.')
+                    target = await ctx.send('Número inválido de logs para el parámetro `--num`.')
                     self.bot.clear_list.append(target)
                     return
             else:
                 title.append(argv[i])
                 i += 1
+        
         mode = await self.set_logs_order(ctx, type)
         
         logs_length = 0
@@ -152,30 +157,34 @@ class Arcdps(commands.Cog):
                 logs_length += 1
                 path = ['{0}/{1}/'.format(self.bot.owner_filepath, x) for x in self.logs[type][e][b]['name']]
                 path_filter = set(p for p in path if os.path.exists(p))
+                
                 if len(path_filter) == 0:
-                    target = await ctx.send('ERROR :robot: : an error has occurred with {}. `Error Code: BLOODSTONE`'.format(b))
+                    target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}. `Error Code: BLOODSTONE`')
                     self.bot.clear_list.append(target)
                     error_logs += 1
                     continue
+                
                 all_files = []
                 for path in path_filter:
-                    for root, dir, files in os.walk(path):
+                    for root, dirs, files in os.walk(path):
                         for file in files:
                             file_name, file_ext = os.path.splitext(file)
-                            if file_ext == '.zevtc' or file_ext == '.evtc' or os.path.splitext(file_name)[1] == '.evtc':
+                            if file_ext in ['.zevtc', '.evtc'] or os.path.splitext(file_name)[1] == '.evtc':
                                 file_path = os.path.join(root, file)
                                 modified_date = os.path.getmtime(file_path)
                                 all_files.append((file_path, modified_date))
+                
                 if len(all_files) == 0:
-                    target = await ctx.send('ERROR :robot: : an error has occurred with {}. `Error Code: EMPYREAL`'.format(b))
+                    target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}. `Error Code: EMPYREAL`')
                     self.bot.clear_list.append(target)
                     error_logs += 1
                     continue
                 elif len(all_files) < self.num_logs:
-                    target = await ctx.send('ERROR :robot: : an error has occurred with {}. `Error Code: DRAGONITE`'.format(b))
+                    target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}. `Error Code: DRAGONITE`')
                     self.bot.clear_list.append(target)
                     error_logs += 1
                     continue
+                
                 all_files.sort(key=lambda x: x[1], reverse=True)
                 if mode == 'dps.report' and self.num_logs > 0:
                     latest_files = [x[0] for x in all_files[:self.num_logs]]
@@ -184,7 +193,7 @@ class Arcdps(commands.Cog):
                 self.logs[type][e][b]['filename'] = os.path.basename(latest_file)
                 
                 if mode == 'dps.report' or mode == 'Both':
-                    print('Uploading {}: dps.report...'.format(b))
+                    print(f'Uploading {b}: dps.report...')
                     dps_endpoint = 'https://dps.report/uploadContent?json=1&generator=ei'
                         
                     if mode == 'dps.report' and self.num_logs > 0:
@@ -193,34 +202,37 @@ class Arcdps(commands.Cog):
                             self.logs[type][e][b]['duration'] = []
                         error_multi_logs = 0
                         for count, lf in enumerate(latest_files, 1):
-                            print('Uploading Log {}...'.format(count))
+                            print(f'Uploading Log {count}...')
                             with open(lf, 'rb') as file:
                                 files = {'file': file}
                                 res = requests.post(dps_endpoint, files=files)
                                 if not res.status_code == 200:
-                                    target = await ctx.send('ERROR :robot: : an error has occurred with {0}({1}). `Error Code: LYSSA`'.format(b, count))
+                                    target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}({count}). `Error Code: LYSSA`')
                                     self.bot.clear_list.append(target)
                                     self.logs[type][e][b]['dps.report'].append('about:blank')
                                     error_multi_logs += 1
                                     continue
-                                else:
-                                    json = res.json()
-                                    log = json['permalink']
+                                try:
+                                    json_data = res.json()
+                                    log = json_data['permalink']
                                     self.logs[type][e][b]['dps.report'].append(log)
                                     if self.show_time:
-                                        if json['encounter']['jsonAvailable']:
+                                        if json_data['encounter']['jsonAvailable']:
                                             params = {'permalink': log}
                                             res = requests.get('https://dps.report/getJson', params=params)
-                                            if not res.status_code == 200:
-                                                target = await ctx.send('ERROR :robot: : an error has occurred with {0}({1}). `Error Code: DWAYNA`'.format(b, count))
+                                            if res.status_code == 200:
+                                                self.logs[type][e][b]['duration'].append(res.json().get('duration', 'UNKNOWN'))
+                                            else:
+                                                target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}({count}). `Error Code: DWAYNA`')
                                                 self.logs[type][e][b]['duration'].append('ERROR')
                                                 self.bot.clear_list.append(target)
-                                            else:
-                                                self.logs[type][e][b]['duration'].append(res.json()['duration'])
                                         else:
-                                            target = await ctx.send('ERROR :robot: : an error has occurred with {0}({1}). `Error Code: GRENTH`'.format(b, count))
+                                            target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}({count}). `Error Code: GRENTH`')
                                             self.logs[type][e][b]['duration'].append('ERROR')
                                             self.bot.clear_list.append(target)
+                                except ValueError:
+                                    target = await ctx.send(f'ERROR :robot: : Could not decode JSON for {b}({count}). `Error Code: JSON`')
+                                    self.bot.clear_list.append(target)
                         if error_multi_logs == len(latest_files):
                             error_logs += 1
                             continue
@@ -229,26 +241,29 @@ class Arcdps(commands.Cog):
                             files = {'file': file}
                             res = requests.post(dps_endpoint, files=files)
                             if not res.status_code == 200:
-                                target = await ctx.send('ERROR :robot: : an error has occurred with {}. `Error Code: LYSSA`'.format(b))
+                                target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}. `Error Code: LYSSA`')
                                 self.bot.clear_list.append(target)
                                 error_logs += 1
                                 continue
-                            else:
-                                json = res.json()
-                                self.logs[type][e][b]['dps.report'] = json['permalink']
+                            try:
+                                json_data = res.json()
+                                self.logs[type][e][b]['dps.report'] = json_data['permalink']
                                 if self.show_time:
-                                    if json['encounter']['jsonAvailable']:
-                                        params = {'permalink': json['permalink']}
+                                    if json_data['encounter']['jsonAvailable']:
+                                        params = {'permalink': json_data['permalink']}
                                         res = requests.get('https://dps.report/getJson', params=params)
-                                        if not res.status_code == 200:
-                                            target = await ctx.send('ERROR :robot: : an error has occurred with {}. `Error Code: DWAYNA`'.format(b))
-                                            self.bot.clear_list.append(target)
+                                        if res.status_code == 200:
+                                            self.logs[type][e][b]['duration'] = res.json().get('duration', 'UNKNOWN')
                                         else:
-                                            self.logs[type][e][b]['duration'] = res.json()['duration'] 
+                                            target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}. `Error Code: DWAYNA`')
+                                            self.bot.clear_list.append(target)
                                     else:
-                                        target = await ctx.send('ERROR :robot: : an error has occurred with {}. `Error Code: GRENTH`'.format(b))
+                                        target = await ctx.send(f'ERROR :robot: : an error has occurred with {b}. `Error Code: GRENTH`')
                                         self.bot.clear_list.append(target)
-                    print('Uploaded {}: dps.report'.format(b))
+                            except ValueError:
+                                target = await ctx.send(f'ERROR :robot: : JSON INVALIDO {b}. `CÓDIGO DE ERROR: JSON`')
+                                self.bot.clear_list.append(target)
+                    print(f'Uploaded {b}: dps.report')
 
                 if mode == 'GW2Raidar' or mode == 'Both':
                     print('Uploading {}: GW2Raidar...'.format(b))
