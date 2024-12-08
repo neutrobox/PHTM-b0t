@@ -273,6 +273,38 @@
                     "success": false
                 }
             }
+        },
+        "W8": {
+            "Greer": {
+                "name": [
+                    "Greer, the Blightbringer (26725)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Decima": {
+                "name": [
+                    "Decima, the Stormsinger (26774)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Ura": {
+                "name": [
+                    "Ura (26712)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
         }
     },
     "fractals": {
