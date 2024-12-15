@@ -88,7 +88,7 @@ class Arcdps(commands.Cog):
         
         with open('cogs/data/user.json', 'w') as key_file:
             json.dump(key, key_file, indent=4)
-        target = await ctx.send('Logueado')
+        target = await ctx.send('Inicio de sesión correcto')
         self.bot.clear_list.append(target)
         
     @commands.command()
@@ -202,7 +202,7 @@ class Arcdps(commands.Cog):
                             self.logs[type][e][b]['duration'] = []
                         error_multi_logs = 0
                         for count, lf in enumerate(latest_files, 1):
-                            print(f'Uploading Log {count}...')
+                            print(f'Subiendo log {count}...')
                             with open(lf, 'rb') as file:
                                 files = {'file': file}
                                 res = requests.post(dps_endpoint, files=files)
@@ -330,7 +330,7 @@ class Arcdps(commands.Cog):
 
         while True:
             logs_len = len(self.logs_order)
-            out = 'Ingresa el `numero` de la Wing/Escala que deseas subir'
+            out = 'Ingresa el `número` de la Wing/Escala que deseas subir'
             if logs_len == 0:
                 out += ' o `0` para subir todos los bosses de todas las Wings/Escalas.\n'
             else:
@@ -529,7 +529,7 @@ class Arcdps(commands.Cog):
                     if not self.show_time or not 'duration' in self.logs[type][e][b]:
                         out += '\n'
                 if self.show_time and 'duration' in self.logs[type][e][b] and not isinstance(self.logs[type][e][b]['duration'], list):
-                    out += '  |  **Time**: {}\n'.format(self.logs[type][e][b]['duration'])
+                    out += '  |  **Duración**: {}\n'.format(self.logs[type][e][b]['duration'])
                 
             if no_link == len(self.logs[type][e]):
                 continue
