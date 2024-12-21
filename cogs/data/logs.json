@@ -405,5 +405,84 @@
                 }
             }
         }
+    },
+    "strikes": {
+        "Core": {
+            "OLC": {
+                "name": [
+                    "Prototype Vermillion (25414)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        },
+        "EoD": {
+            "Mai Trin": {
+                "name": [
+                    "Captain Mai Trin (24033)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Ankka": {
+                "name": [
+                    "Ankka (23957)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Minister Li": {
+                "name": [
+                    "Minister Li (24266)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "HT": {
+                "name": [
+                    "The Dragonvoid (43488)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+            
+        },
+        "SotO": {
+            "Cerus": {
+                "name": [
+                    "Cerus (25989)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Dagda": {
+                "name": [
+                    "Dagda (25705)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        }
     }
 }

@@ -115,8 +115,8 @@ class Arcdps(commands.Cog):
             self.bot.clear_list.append(target)
             return
         
-        if not type in ['raids', 'fractals']:
-            target = await ctx.send('Indica si deseas subir logs de "raids" o "fractales".')
+        if not type in ['raids', 'fractals', 'strikes']:
+            target = await ctx.send('Indica si deseas subir logs de "raids", "fractales" o "strikes".')
             self.bot.clear_list.append(target)
             return 
         
@@ -330,9 +330,9 @@ class Arcdps(commands.Cog):
 
         while True:
             logs_len = len(self.logs_order)
-            out = 'Ingresa el `número` de la Wing/Escala que deseas subir'
+            out = 'Ingresa el `número` de la Wing/Escala/Strike que deseas subir'
             if logs_len == 0:
-                out += ' o `0` para subir todos los bosses de todas las Wings/Escalas.\n'
+                out += ' o `0` para subir todos los bosses.\n'
             else:
                 out += '.\n'
             out += 'Escribe `x` para confirmar tu seleccion.\n```md\n'
@@ -367,7 +367,7 @@ class Arcdps(commands.Cog):
             
             while True:
                 event_len = len(self.logs_order[event[e_pos]])
-                out = 'Ingresa el `number` del boss que deseas subir'
+                out = 'Ingresa el `número` del boss que deseas subir'
                 if event_len == 0:
                     out += ' o `0` para subir todos los bosses.\n'
                 else:
