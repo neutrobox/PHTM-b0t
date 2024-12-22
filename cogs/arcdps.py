@@ -115,7 +115,7 @@ class Arcdps(commands.Cog):
             self.bot.clear_list.append(target)
             return
         
-        if not type in ['raids', 'fractals', 'strikes']:
+        if not type in ['raids', 'fractals', 'strikes', 'sells']:
             target = await ctx.send('Indica si deseas subir logs de "raids", "fractales" o "strikes".')
             self.bot.clear_list.append(target)
             return 

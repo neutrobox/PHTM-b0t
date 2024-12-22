@@ -484,5 +484,281 @@
                 }
             }
         }
+    },
+    "sells": {
+        "W1": {
+            "Vale Guardian": {
+                "name": [
+                    "Vale Guardian (15438)",
+                    "Tal-W\u00e4chter (15438)",
+                    "Gardien de la Vall\u00e9e (15438)",
+                    "Guardi\u00e1n del valle (15438)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Gorseval": {
+                "name": [
+                    "Gorseval the Multifarious (15429)",
+                    "Gorseval der Facettenreiche (15429)",
+                    "Gorseval le Disparate (15429)",
+                    "Gorseval el M\u00faltiple (15429)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Sabetha": {
+                "name": [
+                    "Sabetha the Saboteur (15375)",
+                    "Sabetha die Saboteurin (15375)",
+                    "Sabetha la saboteuse (15375)",
+                    "Sabetha la Saboteadora (15375)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        },
+        "W2": {
+            "Slothasor": {
+                "name": [
+                    "Slothasor (16123)",
+                    "Faultierion (16123)",
+                    "Paressor (16123)",
+                    "Perez\u00f3n (16123)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Trio": {
+                "name": [
+                    "Berg (16088)",
+                    "Berg",
+                    "Berg",
+                    "Berg"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Matthias": {
+                "name": [
+                    "Matthias Gabrel (16115)",
+                    "Matthias Gabrel (16115)",
+                    "Matthias Gabrel (16115)",
+                    "Mat\u00edas Gabrel (16115)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        },
+        "W3": {
+            "Keep Construct": {
+                "name": [
+                    "Keep Construct (16235)",
+                    "Festenkonstrukt (16235)",
+                    "Titan du fort (16235)",
+                    "Ensamblaje de la Fortaleza (16235)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Xera": {
+                "name": [
+                    "Xera (16246)",
+                    "Xera (16246)",
+                    "Xera (16246)",
+                    "Xera (16246)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        },
+        "W4": {
+            "Cairn": {
+                "name": [
+                    "Cairn the Indomitable (17194)",
+                    "Cairn der Unbeugsame (17194)",
+                    "Cairn lIndomptable (17194)",
+                    "Cairn el Indomable (17194)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Mursaat Overseer": {
+                "name": [
+                    "Mursaat Overseer (17172)",
+                    "Mursaat-Aufseher (17172)",
+                    "Surveillant mursaat (17172)",
+                    "Dirigente mursaat (17172)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Samarog": {
+                "name": [
+                    "Samarog (17188)",
+                    "Samarog (17188)",
+                    "Samarog (17188)",
+                    "Samarog (17188)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Deimos": {
+                "name": [
+                    "Deimos (17154)",
+                    "Deimos (17154)",
+                    "Deimos (17154)",
+                    "Deimos (17154)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        },
+        "W5": {
+            "Soulless Horror": {
+                "name": [
+                    "Soulless Horror (19767)",
+                    "Seelenloser Schrecken (19767)",
+                    "Horreur sans \u00e2me (19767)",
+                    "Horror sin alma (19767)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Dhuum": {
+                "name": [
+                    "Dhuum (19450)",
+                    "Dhuum (19450)",
+                    "Dhuum (19450)",
+                    "Dhuum (19450)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        },
+        "W6": {
+            "Conjured Amalgamate": {
+                "name": [
+                    "Conjured Amalgamate (43974)",
+                    "Beschworene Verschmelzung (43974)",
+                    "Amalgame conjur\u00e9 (43974)",
+                    "Amalgamado conjurado (43974)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Largos Twins": {
+                "name": [
+                    "Nikare (21105)",
+                    "Nikare (21105)",
+                    "Nikare (21105)",
+                    "Nikare (21105)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Qadim": {
+                "name": [
+                    "Qadim (20934)",
+                    "Qadim (20934)",
+                    "Qadim (20934)",
+                    "Qadim (20934)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        },
+        "W7": {
+            "Cardinal Sabir": {
+                "name": [
+                    "Cardinal Sabir (21964)",
+                    "Kardinal Sabir (21964)",
+                    "Cardinal Sabir (21964)",
+                    "Cardenal Sabir (21964)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Cardinal Adina": {
+                "name": [
+                    "Cardinal Adina (22006)",
+                    "Kardinal Adina (22006)",
+                    "Cardinale Adina (22006)",
+                    "Cardenal Adina (22006)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            },
+            "Qadim the Peerless": {
+                "name": [
+                    "Qadim the Peerless (22000)",
+                    "Qadim der Unvergleichliche (22000)",
+                    "Qadim lIn\u00e9gal\u00e9 (22000)",
+                    "Qadim el Simpar (22000)"
+                ],
+                "dps.report": "about:blank",
+                "GW2Raidar": {
+                    "link": "about:blank",
+                    "success": false
+                }
+            }
+        }
     }
 }
